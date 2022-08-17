@@ -1,0 +1,98 @@
+{% extends 'emp_rec_management/emp_base.html' %}
+
+{% block title %} Profile {% endblock %}
+
+{% block content %}
+<div class="container-fluid px-4">
+	<h2 class="mt-4">Employee Management System</h2>
+	<ol class="breadcrumb mb-4">
+		<li class="breadcrumb-item active ">Profile</li>
+	</ol>
+	<div class="row">
+		<div class="col-xl-12 col-md-12">
+			<div class="card shadow ">
+				<div class="card-body">
+					<div class="card-header"><h3 class="text-center font-weight-light">My Profile</h3></div>
+						<div class="container-fluid">
+							{% if status%}
+            				<div class="alert alert-success alert-dismissible fade show" role="alert">
+								{{status}}
+							<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+							</div>
+							{% endif %}
+							
+							<form method="POST" action="/emp_profile">
+								{% csrf_token %}
+								
+								<!-- to error: add class "has-danger" -->
+				
+								<div class="row mb-3">
+									<div class="col-md-6">
+										<div class="form-group">
+											<label for="">First name</label>
+											<input class="form-control" type="text" id="fname" name="fname" placeholder="Enter your first name" value="{{ user.first_name }} "/>
+											
+										</div>
+									</div>
+									<div class="col-md-6">
+										<div class="form-group">
+											<label for="">Last name</label>				
+											<input class="form-control" type="text" id="lname" name="lname" placeholder="Enter your last name" value=" {{ user.last_name }} " />
+										</div>
+									</div>
+								</div>
+
+								<div class="row mb-3">
+									<div class="col-md-6">
+										<div class="form-group">
+											<label for="">Employee Department</label>	
+											<input class="form-control" type="text" id="emp_dept" name="emp_dept" placeholder="Enter your Department" value=" {{ data.emp_dept }} " />
+											
+										</div>
+									</div>
+									<div class="col-md-6">
+										<div class="form-group">
+											<label for="">Employee Designation</label>							
+											<input class="form-control" type="text" id="emp_desig" name="emp_desig" placeholder="Enter your Designation  " value=" {{ data.emp_desig }} " />
+										</div>
+									</div>
+								</div>
+
+
+								<div class="row mb-3">
+									<div class="col-md-12">
+										<div class="form-group">
+											<label for="">Email address</label>				
+											<input class="form-control" type="email" id="email" name="email" placeholder="name@example.com" value=" {{ user.email }} " />
+										</div>
+									</div>
+								</div>
+								
+								<div class="row mb-3">
+									<div class="col-md-6">
+										<div class="form-group">
+											<label for="">Contact Number</label>
+											<input class="form-control" type="tel" id="contact_no" name="contact_no" placeholder="Enter your Contact Number" value="{{ data.contact_no}}" />
+											
+										</div>
+									</div>
+									<div class="col-md-6">
+										<div class="form-group">
+											<label for="">Joining Date</label>							
+											<input class="form-control" type="date" id="start_date" name="start_date" placeholder="Enter your Joining Date" value=" {{ data.start_date}}" />
+										</div>
+									</div>
+								</div>
+				
+								<div class="text-center mt-4 mb-0">									
+									<button type="submit" class="btn btn-primary btn-block ">Save Changes</button>									
+								</div>
+							</form>
+						</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+{% endblock %}
